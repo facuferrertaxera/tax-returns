@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.m"
+    xmlns:st="sap.ui.comp.smarttable"
+    xmlns:core="sap.ui.core" displayBlock="true">
+    <st:SmartTable visible="true" id="vatReturnSummarySTable" enableAutoBinding="true" smartVariant="__SVM01" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmtbm" entitySet="VatTaxSummary" tableBindingPath="to_VatTaxSummary" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" showRowCount="true">
+        <st:layoutData>
+            <FlexItemData growFactor="1" baseSize="0%"/>
+        </st:layoutData>
+        <st:customToolbar>
+            <OverflowToolbar design="Transparent">
+                <ToolbarSpacer/>
+                <!-- <Button text="{i18n>vatReturnList.NewVatReturn}" type="Emphasized" press="onNewVATReturn" enabled="true"/> -->
+            </OverflowToolbar>
+        </st:customToolbar>
+        <Table id="vatReturnSummaryTable" sticky="ColumnHeaders,HeaderToolbar" mode="None" selectionChange="onSelectExtraction" growing="true" growingScrollToLoad="true" growingThreshold="100">
+            <columns>
+            </columns>
+            <items>
+            
+                <ColumnListItem type="Navigation" press="onSummaryItemPress">
+                    <cells>
+
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </st:SmartTable>
+</core:FragmentDefinition>

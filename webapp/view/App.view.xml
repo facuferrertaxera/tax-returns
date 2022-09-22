@@ -1,0 +1,4 @@
+<mvc:View controllerName="tech.taxera.vatreturns.app.vatreturns.controller.App" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:f="sap.f" height="100%" class="sapUiSizeCompact">
+	<f:FlexibleColumnLayout id="fcl" layout="{view>/fclLayout/layout}"/>
+</mvc:View>

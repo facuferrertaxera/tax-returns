@@ -1,0 +1,152 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "tech.taxera.vatreturns.app.vatreturns",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/TAXERA/VAT_UI_O2",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "tech-taxera-taxreturns-app-taxreturns-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "operationalReconciliation",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "info": "{{flpInfo}}",
+                    "icon": "sap-icon://accounting-document-verification"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "fullWidth": true,
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.96.7",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "tech.taxera.vatreturns.app.vatreturns.i18n.i18n"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "tech.taxera.vatreturns.app.vatreturns.view",
+                "controlId": "fcl",
+                "bypassed": {
+                    "target": "TargetNotFound"
+                }
+            },
+            "routes": [
+                {
+                    "name": "RouteVatReturnList",
+                    "pattern": "",
+                    "target": [
+                        "TargetVatReturnList"
+                    ]
+                },
+                {
+                    "name": "RouteVatReturnSummary",
+                    "pattern": "vatReturnSummary/{VatId}",
+                    "target": [
+                        "TargetVatReturnSummary"
+                    ]
+                },
+                {
+                    "name": "RouteVatReturnDetail",
+                    "pattern": "vatReturnDetail/{VatId}",
+                    "target": [
+                        "TargetVatReturnDetail"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetVatReturnList": {
+                    "viewId": "VatReturnList",
+                    "viewName": "VatReturnList",
+                    "controlAggregation": "beginColumnPages",
+                    "viewLevel": 1
+                },
+                "TargetVatReturnSummary": {
+                    "viewId": "VatReturnSummary",
+                    "viewName": "VatReturnSummary",
+                    "controlAggregation": "beginColumnPages",
+                    "viewLevel": 1
+                },
+                "TargetVatReturnDetail": {
+                    "viewId": "VatReturnDetail",
+                    "viewName": "VatReturnDetail",
+                    "controlAggregation": "beginColumnPages",
+                    "viewLevel": 1
+                }
+            }
+        },
+        "rootView": {
+            "id": "AppView",
+            "viewName": "tech.taxera.vatreturns.app.vatreturns.view.App",
+            "type": "XML"
+        }
+    }
+}

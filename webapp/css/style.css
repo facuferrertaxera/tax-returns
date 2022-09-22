@@ -1,0 +1,39 @@
+/* Enter your custom styles here */
+
+.sapFDynamicPage-Std-Desktop .sapFDynamicPageHeader.sapFDynamicPageHeaderWithContent {
+    padding: 1rem 1rem;
+}
+
+.sapFDynamicPageHeader.sapFDynamicPageHeaderWithContent {
+    padding: 1rem 1rem 1rem 1rem;
+    box-shadow: 0 0 .25rem 0rgba(0,0,0,0.15),inset 0 -0.0625rem 0 0 #d9d9d9;
+}
+
+.totalsTable.sapUiTableRowSelectors:not(.sapUiTableRowHighlights) .sapUiTableRowHdrScr {
+    width: 2rem;
+    visibility: hidden;
+}
+
+.sapUiTableFtr {
+    border-bottom: 0rem;
+     border-left: 0rem; 
+     border-right: 0rem; 
+    box-sizing: border-box;
+    min-height: 3rem;
+    background-color: #fff;
+     padding-left: 0rem; 
+     padding-right: 0rem; 
+}
+
+.totalsTable .sapUiTableColHdrCnt {
+    min-height: 0rem;
+}
+
+.amountTextColor{
+    color: #000000 !important;
+    font-weight: bold !important;
+}
+
+.SFDialogContent.sapUiCompFilterBarNonPhone.sapUiRespGrid.sapUiRespGridHSpace0{
+    padding-bottom: 0;
+}

@@ -1,0 +1,104 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core" displayBlock="true">
+    <f:Card class="sapUiMediumMargin" width="300px">
+        <f:header>
+            <card:Header title="{CompanyCode}" subtitle="{parts:[{path: 'SubmissionDateFrom'}, {path: 'SubmissionDateTo'}], formatter: '.formatter.formatVisibleDurationText'}" iconSrc="{ path: 'Status', formatter: '.formatter.formatStatusIcon' }"/>
+        </f:header>
+        <f:content>
+            <VBox height="110px" class="sapUiSmallMargin" justifyContent="SpaceBetween">
+                <HBox justifyContent="SpaceBetween">
+                    <Label text="{i18n>vatSummaryHeader.TotalOutputTax}"/>
+                    <Text text="{parts: ['TotalOutputTax', 'Currency'], type: 'sap.ui.model.type.Currency'}"/>
+                </HBox>
+                <HBox justifyContent="SpaceBetween">
+                    <Label text="{i18n>vatSummaryHeader.TotalInputTax}"/>
+                    <Text text="{parts: ['TotalInputTax', 'Currency'], type: 'sap.ui.model.type.Currency'}"/>
+                </HBox>
+                <HBox justifyContent="SpaceBetween">
+                    <Label text="{i18n>vatSummaryHeader.TaxBalance}"/>
+                    <Text text="{parts: ['TaxBalance', 'Currency'], type: 'sap.ui.model.type.Currency'}"/>
+                </HBox>
+            </VBox>
+        </f:content>
+    </f:Card>
+    <form:Form editable="false">
+        <form:layout>
+            <form:ColumnLayout columnsM="1" columnsL="2" columnsXL="3" />
+        </form:layout>
+        <form:formContainers>
+            <form:FormContainer>
+                <form:formElements>
+                    <form:FormElement>
+                        <form:label>
+                            <Label text="{i18n>vatSummaryHeader.Status}"/>
+                        </form:label>
+                        <form:fields>
+                            <ObjectStatus inverted="false" text="{StatusText}" icon="{path: 'Status', formatter: '.formatter.formatStatusIcon' }" state="{path: 'Status', formatter: '.formatter.formatStatusColor' }"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement>
+                        <form:label>
+                            <Label text="{i18n>vatSummaryHeader.CompanyCode}"/>
+                        </form:label>
+                        <form:fields>
+                            <Text text="{CompanyCode}"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement>
+                        <form:label>
+                            <Label text="{i18n>vatSummaryHeader.SubmissionDateFrom}"/>
+                        </form:label>
+                        <form:fields>
+                            <Text text="{path: 'SubmissionDateFrom', type: '.types.TaxeraDateType'}"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement>
+                        <form:label>
+                            <Label text="{i18n>vatSummaryHeader.SubmissionDateTo}"/>
+                        </form:label>
+                        <form:fields>
+                            <Text text="{path: 'SubmissionDateTo', type: '.types.TaxeraDateType'}"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement>
+                        <form:label>
+                            <Label text="{i18n>vatSummaryHeader.FiscalYear}"/>
+                        </form:label>
+                        <form:fields>
+                            <Text text="{FiscalYear}"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement>
+                        <form:label>
+                            <Label text="{i18n>vatSummaryHeader.TotalOutputTax}"/>
+                        </form:label>
+                        <form:fields>
+                            <Text text="{parts: ['TotalOutputTax', 'Currency'], type: 'sap.ui.model.type.Currency'}"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement>
+                        <form:label>
+                            <Label text="{i18n>vatSummaryHeader.TotalInputTax}"/>
+                        </form:label>
+                        <form:fields>
+                            <Text text="{parts: ['TotalInputTax', 'Currency'], type: 'sap.ui.model.type.Currency'}"/>
+                        </form:fields>
+                    </form:FormElement>
+                    <form:FormElement>
+                        <form:label>
+                            <Label text="{i18n>vatSummaryHeader.TaxBalance}"/>
+                        </form:label>
+                        <form:fields>
+                            <Text text="{parts: ['TaxBalance', 'Currency'], type: 'sap.ui.model.type.Currency'}"/>
+                        </form:fields>
+                    </form:FormElement>
+                </form:formElements>
+            </form:FormContainer>
+        </form:formContainers>
+    </form:Form>
+</core:FragmentDefinition>

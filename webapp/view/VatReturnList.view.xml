@@ -1,0 +1,50 @@
+<mvc:View controllerName="tech.taxera.vatreturns.app.vatreturns.controller.VatReturnList"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:sfb="sap.ui.comp.smartfilterbar"
+    xmlns:sv="sap.ui.comp.smartvariants">
+
+    <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" headerExpanded="{view>/vatReturnList/headerExpanded}" busyIndicatorDelay="{view>/busyIndicatorDelay}">
+        <f:title>
+            <f:DynamicPageTitle stateChange="onTitleStateChange">
+                <f:heading>
+                    <sv:SmartVariantManagement id="__SVM01" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmvm" showShare="true" showExecuteOnSelection="true" entitySet="Extraction"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <f:content>
+                    <sfb:SmartFilterBar id="smartFilterBar" liveMode="false" smartVariant="__SVM01" useToolbar="false" entitySet="VatHeader" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmvm" assignedFiltersChanged="onAssignedFiltersChanged" enableBasicSearch="true" basicSearchFieldName="Country">
+                        <sfb:controlConfiguration>
+                            <sfb:ControlConfiguration key="Country" mandatory="notMandatory" visibleInAdvancedArea="true">
+                            </sfb:ControlConfiguration>
+                            <sfb:ControlConfiguration key="CompanyCode" mandatory="notMandatory" visibleInAdvancedArea="true">
+                            </sfb:ControlConfiguration>
+                            <sfb:ControlConfiguration key="FiscalYear" mandatory="notMandatory" label="{i18n>vatReturnList.FiscalYear}" visibleInAdvancedArea="true">
+                            </sfb:ControlConfiguration>
+                            <sfb:ControlConfiguration key="CreatedOn" mandatory="notMandatory" label="{i18n>vatReturnList.CreatedOn}" conditionType="{
+						module: 'sap.ui.comp.config.condition.DateRangeType',
+						ignoreTime: true
+					}" visibleInAdvancedArea="true">
+                            </sfb:ControlConfiguration>
+                        </sfb:controlConfiguration>
+
+                        <!-- layout data used to make the table growing but the filter bar fixed -->
+                        <sfb:layoutData>
+                            <FlexItemData shrinkFactor="0"/>
+                        </sfb:layoutData>
+
+                    </sfb:SmartFilterBar>
+
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <core:Fragment fragmentName="tech.taxera.vatreturns.app.vatreturns.view.vatReturnList.VatReturnListTable" type="XML"/>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

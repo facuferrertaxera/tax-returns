@@ -1,0 +1,93 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.m"
+    xmlns:st="sap.ui.comp.smarttable"
+    xmlns:core="sap.ui.core" displayBlock="true">
+    <st:SmartTable visible="true" id="vatReturnsSTable" enableAutoBinding="true" smartVariant="__SVM01" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmtbm" entitySet="VatHeader" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" showRowCount="true" ignoreFromPersonalisation="Country" requestAtLeastFields="VatId,CountryName,CompanyCode,FiscalYear,CreatedOn,SubmissionDateFrom,SubmissionDateTo,PostingDate,TaxReturnDate,Status">
+        <st:layoutData>
+            <FlexItemData growFactor="1" baseSize="0%"/>
+        </st:layoutData>
+        <st:customToolbar>
+            <OverflowToolbar design="Transparent">
+                <ToolbarSpacer/>
+                <Button text="{i18n>vatReturnList.NewVatReturn}" type="Emphasized" press="onNewVATReturn" enabled="true"/>
+            </OverflowToolbar>
+        </st:customToolbar>
+        <Table id="vatReturnsTable" sticky="ColumnHeaders,HeaderToolbar" mode="None" selectionChange="onSelectExtraction" growing="true" growingScrollToLoad="true" growingThreshold="100">
+            <columns>
+                <Column>
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"columnKey": "CountryName","columnIndex":"0", "leadingProperty": "CountryName", "filterProperty": "CountryName", "sortProperty": "CountryName", "type": "string"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnList.Country}"/>
+                </Column>
+                <Column demandPopin="true" minScreenWidth="Tablet">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"columnKey": "CompanyCode","columnIndex":"1", "leadingProperty": "CompanyCode", "filterProperty": "CompanyCode", "sortProperty": "CompanyCode", "type": "string"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnList.CompanyCode}"/>
+                </Column>
+                <Column demandPopin="true" minScreenWidth="Tablet">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"columnKey": "FiscalYear","columnIndex":"2", "leadingProperty": "FiscalYear", "filterProperty": "FiscalYear", "sortProperty": "FiscalYear", "type": "number"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnList.FiscalYear}"/>
+                </Column>
+                <Column demandPopin="true" minScreenWidth="Tablet">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"columnKey": "SubmissionDateFrom","columnIndex":"3", "leadingProperty": "SubmissionDateFrom", "filterProperty": "SubmissionDateFrom", "sortProperty": "SubmissionDateFrom", "type": "date"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnList.SubmissionDateFrom}"/>
+                </Column>
+                <Column demandPopin="true" minScreenWidth="Tablet">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"columnKey": "SubmissionDateTo","columnIndex":"4", "leadingProperty": "SubmissionDateTo", "filterProperty": "SubmissionDateTo", "sortProperty": "SubmissionDateTo", "type": "date"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnList.SubmissionDateTo}"/>
+                </Column>
+                <Column demandPopin="true" minScreenWidth="Tablet">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"columnKey": "PostingDate","columnIndex": "5", "leadingProperty": "PostingDate", "filterProperty": "PostingDate", "sortProperty": "PostingDate", "type": "date"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnList.PostingDate}"/>
+                </Column>
+                <Column demandPopin="true" minScreenWidth="Tablet">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"columnKey": "TaxReturnDate","columnIndex":"6", "leadingProperty": "TaxReturnDate", "filterProperty": "TaxReturnDate", "sortProperty": "TaxReturnDate", "type": "date"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnList.TaxReturnDate}"/>
+                </Column>
+                <Column demandPopin="true" minScreenWidth="Desktop">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"columnKey": "Status","columnIndex":"7", "leadingProperty": "Status", "filterProperty": "Status", "sortProperty": "Status", "type": "string"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnList.Status}"/>
+                </Column>
+                <Column demandPopin="true" minScreenWidth="Desktop" >
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"columnKey": "Actions","columnIndex":"8"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnList.Actions}"/>
+                </Column>
+            </columns>
+            <items>
+            
+                <ColumnListItem type="Navigation" press="onVatReturnPress">
+                    <cells>
+                        <Text text="{CountryName}"/>
+                        <Text text="{CompanyCode}"/>
+                        <Text text="{FiscalYear}"/>
+                        <Text text="{path: 'SubmissionDateFrom', type: '.types.TaxeraDateType'}"/>
+                        <Text text="{path: 'SubmissionDateTo', type: '.types.TaxeraDateType'}"/>
+                        <Text text="{path: 'PostingDate', type: '.types.TaxeraDateType'}"/>
+                        <Text text="{path: 'TaxReturnDate', type: '.types.TaxeraDateType'}"/>
+                        <ObjectStatus inverted="false" text="{StatusText}" icon="{path: 'Status', formatter: '.formatter.formatStatusIcon' }" state="{path: 'Status', formatter: '.formatter.formatStatusColor' }"/>
+                        <HBox visible="false">
+                            <Button class="sapUiTinyMarginEnd" enabled="false" type="Emphasized" icon="sap-icon://download" tooltip="{i18n>vatReturnList.DownloadForm}" press="onDownloadForm"/>
+                        </HBox>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </st:SmartTable>
+</core:FragmentDefinition>

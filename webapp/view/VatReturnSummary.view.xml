@@ -1,0 +1,26 @@
+<mvc:View controllerName="tech.taxera.vatreturns.app.vatreturns.controller.VatReturnSummary"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+    <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" headerExpanded="{view>/vatReturnList/headerExpanded}" busyIndicatorDelay="{view>/busyIndicatorDelay}">
+        <f:title>
+            <f:DynamicPageTitle stateChange="onTitleStateChange">
+                <f:heading>
+                    
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <f:content>
+                    <core:Fragment fragmentName="tech.taxera.vatreturns.app.vatreturns.view.vatReturnSummary.VatReturnSummaryHeader" type="XML"/>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <core:Fragment fragmentName="tech.taxera.vatreturns.app.vatreturns.view.vatReturnSummary.VatReturnSummaryTable" type="XML"/>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
