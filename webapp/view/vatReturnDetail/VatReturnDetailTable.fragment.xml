@@ -21,6 +21,9 @@
                         <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "DocumentNo","columnIndex":"0", "leadingProperty": "DocumentNo", "filterProperty": "DocumentNo", "sortProperty": "DocumentNo", "type": "string"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnDetail.DocumentNo}"/>
+                    <footer>
+                        <Text text="{i18n>vatReturnDetail.Total}"/>
+                    </footer>
                 </Column>
                 <Column demandPopin="true" hAlign="Center">
                     <customData>
@@ -69,30 +72,45 @@
                         <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "TaxBaseAmount","columnIndex":"8", "leadingProperty": "TaxBaseAmount", "filterProperty": "TaxBaseAmount", "sortProperty": "TaxBaseAmount", "type":"numeric"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnDetail.TaxBaseAmount}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>TaxBaseAmount'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
                 </Column>
                 <Column demandPopin="true" visible="{= ${view>/vatReturnDetail/selectedDocType} === 'O'}" hAlign="Right">
                     <customData>
                         <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "TaxPayable","columnIndex":"9", "leadingProperty": "TaxPayable", "filterProperty": "TaxPayable", "sortProperty": "TaxPayable", "type":"numeric"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnDetail.TaxPayable}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>TaxPayable'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
                 </Column>
                 <Column demandPopin="true" visible="{= ${view>/vatReturnDetail/selectedDocType} === 'I'}" hAlign="Right">
                     <customData>
                         <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "DeductInputTax","columnIndex":"10", "leadingProperty": "DeductInputTax", "filterProperty": "DeductInputTax", "sortProperty": "DeductInputTax", "type":"numeric"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnDetail.DeductInputTax}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>DeductInputTax'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
                 </Column>
                 <Column demandPopin="true" visible="{= ${view>/vatReturnDetail/selectedDocType} === 'I'}" hAlign="Right">
                     <customData>
                         <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "NonDeductInputTax","columnIndex":"11", "leadingProperty": "NonDeductInputTax", "filterProperty": "NonDeductInputTax", "sortProperty": "NonDeductInputTax", "type":"numeric"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnDetail.NonDeductInputTax}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>NonDeductInputTax'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
                 </Column>
                 <Column demandPopin="true" hAlign="Right">
                     <customData>
                         <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "GrossAmount","columnIndex":"12", "leadingProperty": "GrossAmount", "filterProperty": "GrossAmount", "sortProperty": "GrossAmount", "type":"numeric"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnDetail.GrossAmount}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>GrossAmount'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
                 </Column>
             </columns>
             <items>

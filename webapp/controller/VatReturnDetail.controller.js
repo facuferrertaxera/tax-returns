@@ -38,7 +38,8 @@ sap.ui.define([
                 this.VatId = oArgs.VatId;
                 this.getView().setModel(this.getView().getModel(), "totals");
                 this._bindView(oArgs.VatId);
-                this._bindTotals(oArgs.VatId);
+                this._bindHeaderTotals(oArgs.VatId);
+                this._bindBodyTotals(oArgs.VatId);
 
             },
             _bindView: function (sVatId) {
@@ -60,7 +61,7 @@ sap.ui.define([
                 }
             },
 
-            _bindTotals: function (sVatId) {
+            _bindHeaderTotals: function (sVatId) {
                 this.getView().getModel("totals").promRead(`/VatTaxSummary`,
                     {
                         filters: [new Filter({
@@ -77,18 +78,45 @@ sap.ui.define([
                             properties: oTotal
                         });
 
-                        this.getView().byId("HeaderFlexBox").setBindingContext(oContext,"totals");
+                        this.getView().byId("HeaderFlexBox").setBindingContext(oContext, "totals");
+                    });
+            },
 
+            _bindBodyTotals: function (sVatId) {
+                this.getView().getModel("totals").promRead(`/VatTaxSummary`,
+                    {
+                        filters: [
+                            new Filter({
+                                path: "VatId",
+                                operator: FilterOperator.EQ,
+                                value1: sVatId
+                            }), new Filter({
+                                path: "InOutTax",
+                                operator: FilterOperator.EQ,
+                                value1: this.getModel("view").getProperty("/vatReturnDetail/selectedDocType")
+                            })
+                        ],
+                        urlParameters: { "$select": "VatId,TaxBaseAmount,TaxPayable,DeductInputTax,TaxBalance,NonDeductInputTax,GrossAmount,CurrencyCode" }
+                    })
+                    .then((oResponse) => {
+                        var oTotal = oResponse.results.pop();
+                        var sPath = this.getModel("totals").getEntityObjectPath(oTotal);
+                        var oContext = this.getView().getModel("totals").createEntry(sPath, {
+                            properties: oTotal
+                        });
+
+                        this.getView().byId("vatReturnDetailTable").setBindingContext(oContext, "totals");
                     });
             },
 
             onSelectedDocTypeChange: function () {
                 this.getView().byId("vatReturnDetailSTable").rebindTable(true);
+                this._bindBodyTotals(this.VatId);
             },
 
             onBeforeRebind: function (oEvent) {
                 var oBinding = oEvent.getParameter("bindingParams"),
-                    sDocType = this.getModel("view").getProperty("/vatReturnDetail/selectedDocType");             
+                    sDocType = this.getModel("view").getProperty("/vatReturnDetail/selectedDocType");
                 oBinding.filters.push(new Filter({
                     path: "InOutTax",
                     operator: FilterOperator.EQ,

@@ -4,7 +4,8 @@
     xmlns:st="sap.ui.comp.smarttable"
     xmlns:core="sap.ui.core" displayBlock="true">
     
-    <st:SmartTable visible="true" id="vatReturnSummarySTable" enableAutoColumnWidth="true" enableAutoBinding="true" smartVariant="__SVM01" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmtbm" entitySet="VatTaxSummary" tableBindingPath="to_VatTaxSummary" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" showRowCount="true">
+    <st:SmartTable visible="true" id="vatReturnSummarySTable" enableAutoColumnWidth="true" enableAutoBinding="true" smartVariant="__SVM01" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmtbm" entitySet="VatTaxSummary" tableBindingPath="to_VatTaxSummary" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="true" 
+    requestAtLeastFields="Trans,TaxCode,Description,TaxRate,TaxBaseAmount,TaxPayable,DeductInputTax,TaxBalance,NonDeductInputTax,GrossAmount" useTablePersonalisation="true" showRowCount="true">
         <st:layoutData>
             <FlexItemData growFactor="1" baseSize="0%"/>
         </st:layoutData>
@@ -14,5 +15,97 @@
                 <!-- <Button text="{i18n>vatReturnList.NewVatReturn}" type="Emphasized" press="onNewVATReturn" enabled="true"/> -->
             </OverflowToolbar>
         </st:customToolbar>
+        <Table id="vatReturnSummaryTable" sticky="ColumnHeaders,HeaderToolbar" fixedLayout="Strict" contextualWidth="Auto" mode="None" growing="true" growingScrollToLoad="true" growingThreshold="100">
+            <columns>
+                <Column demandPopin="true">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "Trans","columnIndex":"0", "leadingProperty": "Trans", "filterProperty": "Trans", "sortProperty": "Trans", "type": "string"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnSummary.Trans}"/>
+                    <footer>
+                        <Text text="{i18n>vatReturnSummary.Total}"/>
+                    </footer>
+                </Column>
+                <Column demandPopin="true" hAlign="Center">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": \{ "min": 4, "max": 7 }, "columnKey": "TaxCode","columnIndex":"1", "leadingProperty": "TaxCode", "filterProperty": "TaxCode", "sortProperty": "TaxCode", "type": "string"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnSummary.TaxCode}"/>
+                </Column>
+                <Column demandPopin="true" hAlign="Begin">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "Description","columnIndex":"2", "leadingProperty": "Description", "filterProperty": "Description", "sortProperty": "Description", "type":"string"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnSummary.Description}"/>
+                </Column>
+                <Column demandPopin="true" hAlign="Right">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": \{ "min": 7, "max": 8 }, "columnKey": "TaxRate","columnIndex":"3", "leadingProperty": "TaxRate", "filterProperty": "TaxRate", "sortProperty": "TaxRate", "type": "string"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnSummary.TaxRate}"/>
+                </Column>
+                <Column demandPopin="true" hAlign="Right">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "TaxBaseAmount","columnIndex":"4", "leadingProperty": "TaxBaseAmount", "filterProperty": "TaxBaseAmount", "sortProperty": "TaxBaseAmount", "type":"numeric"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnSummary.TaxBaseAmount}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>TaxBaseAmount'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
+                </Column>
+                <Column demandPopin="true" hAlign="Right">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "TaxPayable","columnIndex":"5", "leadingProperty": "TaxPayable", "filterProperty": "TaxPayable", "sortProperty": "TaxPayable", "type":"numeric"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnSummary.TaxPayable}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>TaxPayable'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
+                </Column>
+                <Column demandPopin="true" hAlign="Right">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "DeductInputTax","columnIndex":"6", "leadingProperty": "DeductInputTax", "filterProperty": "DeductInputTax", "sortProperty": "DeductInputTax", "type":"numeric"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnSummary.DeductInputTax}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>DeductInputTax'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
+                </Column>
+                <Column demandPopin="true" hAlign="Right">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "NonDeductInputTax","columnIndex":"7", "leadingProperty": "NonDeductInputTax", "filterProperty": "NonDeductInputTax", "sortProperty": "NonDeductInputTax", "type":"numeric"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnSummary.NonDeductInputTax}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>NonDeductInputTax'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
+                </Column>
+                <Column demandPopin="true" hAlign="Right">
+                    <customData>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "GrossAmount","columnIndex":"8", "leadingProperty": "GrossAmount", "filterProperty": "GrossAmount", "sortProperty": "GrossAmount", "type":"numeric"}'/>
+                    </customData>
+                    <Text text="{i18n>vatReturnSummary.GrossAmount}"/>
+                    <footer>
+                        <Text text="{parts: [{path: 'totals>GrossAmount'}, {path: 'totals>CurrencyCode'}], type: 'sap.ui.model.type.Currency'}"/>
+                    </footer>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{Trans}"/>
+                        <Text text="{TaxCode}"/>
+                        <Text text="{Description}"/>
+                        <Text text="{TaxRate}"/>
+                        <Text text="{parts: ['TaxBaseAmount', 'CurrencyCode'], type: 'sap.ui.model.type.Currency'}"/>
+                        <Text text="{parts: ['TaxPayable', 'CurrencyCode'], type: 'sap.ui.model.type.Currency'}"/>
+                        <Text text="{parts: ['DeductInputTax', 'CurrencyCode'], type: 'sap.ui.model.type.Currency'}"/>
+                        <Text text="{parts: ['NonDeductInputTax', 'CurrencyCode'], type: 'sap.ui.model.type.Currency'}"/>
+                        <Text text="{parts: ['GrossAmount', 'CurrencyCode'], type: 'sap.ui.model.type.Currency'}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
     </st:SmartTable>
+    
 </core:FragmentDefinition>
