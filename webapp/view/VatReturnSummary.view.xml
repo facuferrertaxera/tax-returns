@@ -3,12 +3,18 @@
     xmlns="sap.m"
     xmlns:f="sap.f"
     xmlns:core="sap.ui.core">
-    <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" headerExpanded="{view>/vatReturnList/headerExpanded}" busyIndicatorDelay="{view>/busyIndicatorDelay}">
+    <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" headerExpanded="{view>/vatReturnSummary/headerExpanded}" busyIndicatorDelay="{view>/busyIndicatorDelay}">
         <f:title>
             <f:DynamicPageTitle stateChange="onTitleStateChange">
                 <f:heading>
                     
                 </f:heading>
+                <f:actions>
+						<Button
+								text="{i18n>vatSummaryHeader.DisplayItems}"
+								type="Emphasized"
+								press="onDisplayItems"/>
+					</f:actions>
             </f:DynamicPageTitle>
         </f:title>
         <!-- DynamicPage Header -->

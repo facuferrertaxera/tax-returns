@@ -3,7 +3,7 @@
     xmlns="sap.m"
     xmlns:st="sap.ui.comp.smarttable"
     xmlns:core="sap.ui.core" displayBlock="true">
-    <st:SmartTable visible="true" id="vatReturnsSTable" enableAutoBinding="true" smartVariant="__SVM01" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmtbm" entitySet="VatHeader" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" showRowCount="true" ignoreFromPersonalisation="Country" requestAtLeastFields="VatId,CountryName,CompanyCode,FiscalYear,CreatedOn,SubmissionDateFrom,SubmissionDateTo,PostingDate,TaxReturnDate,Status">
+    <st:SmartTable visible="true" id="vatReturnsSTable" enableAutoColumnWidth="true" enableAutoBinding="true" smartVariant="__SVM01" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmtbm" entitySet="VatHeader" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" showRowCount="true" ignoreFromPersonalisation="Country,StatusText" requestAtLeastFields="VatId,CountryName,CompanyCode,FiscalYear,CreatedOn,SubmissionDateFrom,SubmissionDateTo,PostingDate,TaxReturnDate,Status,StatusText">
         <st:layoutData>
             <FlexItemData growFactor="1" baseSize="0%"/>
         </st:layoutData>
@@ -13,65 +13,64 @@
                 <Button text="{i18n>vatReturnList.NewVatReturn}" type="Emphasized" press="onNewVATReturn" enabled="true"/>
             </OverflowToolbar>
         </st:customToolbar>
-        <Table id="vatReturnsTable" sticky="ColumnHeaders,HeaderToolbar" mode="None" selectionChange="onSelectExtraction" growing="true" growingScrollToLoad="true" growingThreshold="100">
+        <Table id="vatReturnsTable" sticky="ColumnHeaders,HeaderToolbar" fixedLayout="Strict" contextualWidth="Auto" mode="None" selectionChange="onSelectExtraction" growing="true" growingScrollToLoad="true" growingThreshold="100">
             <columns>
-                <Column>
+                <Column demandPopin="true">
                     <customData>
-                        <core:CustomData key="p13nData" value='\{"columnKey": "CountryName","columnIndex":"0", "leadingProperty": "CountryName", "filterProperty": "CountryName", "sortProperty": "CountryName", "type": "string"}'/>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "CountryName","columnIndex":"0", "leadingProperty": "CountryName", "filterProperty": "CountryName", "sortProperty": "CountryName", "type": "string"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnList.Country}"/>
                 </Column>
-                <Column demandPopin="true" minScreenWidth="Tablet">
+                <Column demandPopin="true">
                     <customData>
-                        <core:CustomData key="p13nData" value='\{"columnKey": "CompanyCode","columnIndex":"1", "leadingProperty": "CompanyCode", "filterProperty": "CompanyCode", "sortProperty": "CompanyCode", "type": "string"}'/>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "CompanyCode","columnIndex":"1", "leadingProperty": "CompanyCode", "filterProperty": "CompanyCode", "sortProperty": "CompanyCode", "type": "string"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnList.CompanyCode}"/>
                 </Column>
-                <Column demandPopin="true" minScreenWidth="Tablet">
+                <Column demandPopin="true">
                     <customData>
-                        <core:CustomData key="p13nData" value='\{"columnKey": "FiscalYear","columnIndex":"2", "leadingProperty": "FiscalYear", "filterProperty": "FiscalYear", "sortProperty": "FiscalYear", "type": "number"}'/>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "FiscalYear","columnIndex":"2", "leadingProperty": "FiscalYear", "filterProperty": "FiscalYear", "sortProperty": "FiscalYear", "type": "number"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnList.FiscalYear}"/>
                 </Column>
-                <Column demandPopin="true" minScreenWidth="Tablet">
+                <Column demandPopin="true">
                     <customData>
-                        <core:CustomData key="p13nData" value='\{"columnKey": "SubmissionDateFrom","columnIndex":"3", "leadingProperty": "SubmissionDateFrom", "filterProperty": "SubmissionDateFrom", "sortProperty": "SubmissionDateFrom", "type": "date"}'/>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "SubmissionDateFrom","columnIndex":"3", "leadingProperty": "SubmissionDateFrom", "filterProperty": "SubmissionDateFrom", "sortProperty": "SubmissionDateFrom", "type": "date"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnList.SubmissionDateFrom}"/>
                 </Column>
-                <Column demandPopin="true" minScreenWidth="Tablet">
+                <Column demandPopin="true">
                     <customData>
-                        <core:CustomData key="p13nData" value='\{"columnKey": "SubmissionDateTo","columnIndex":"4", "leadingProperty": "SubmissionDateTo", "filterProperty": "SubmissionDateTo", "sortProperty": "SubmissionDateTo", "type": "date"}'/>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "SubmissionDateTo","columnIndex":"4", "leadingProperty": "SubmissionDateTo", "filterProperty": "SubmissionDateTo", "sortProperty": "SubmissionDateTo", "type": "date"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnList.SubmissionDateTo}"/>
                 </Column>
-                <Column demandPopin="true" minScreenWidth="Tablet">
+                <Column demandPopin="true">
                     <customData>
-                        <core:CustomData key="p13nData" value='\{"columnKey": "PostingDate","columnIndex": "5", "leadingProperty": "PostingDate", "filterProperty": "PostingDate", "sortProperty": "PostingDate", "type": "date"}'/>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "PostingDate","columnIndex": "5", "leadingProperty": "PostingDate", "filterProperty": "PostingDate", "sortProperty": "PostingDate", "type": "date"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnList.PostingDate}"/>
                 </Column>
-                <Column demandPopin="true" minScreenWidth="Tablet">
+                <Column demandPopin="true">
                     <customData>
-                        <core:CustomData key="p13nData" value='\{"columnKey": "TaxReturnDate","columnIndex":"6", "leadingProperty": "TaxReturnDate", "filterProperty": "TaxReturnDate", "sortProperty": "TaxReturnDate", "type": "date"}'/>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "TaxReturnDate","columnIndex":"6", "leadingProperty": "TaxReturnDate", "filterProperty": "TaxReturnDate", "sortProperty": "TaxReturnDate", "type": "date"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnList.TaxReturnDate}"/>
                 </Column>
-                <Column demandPopin="true" minScreenWidth="Desktop">
+                <Column demandPopin="true">
                     <customData>
-                        <core:CustomData key="p13nData" value='\{"columnKey": "Status","columnIndex":"7", "leadingProperty": "Status", "filterProperty": "Status", "sortProperty": "Status", "type": "string"}'/>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": \{ "visibleProperty": "StatusText" }, "columnKey": "Status","columnIndex":"7", "leadingProperty": "Status", "filterProperty": "Status", "sortProperty": "Status", "type": "string"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnList.Status}"/>
                 </Column>
-                <Column demandPopin="true" minScreenWidth="Desktop" >
+                <Column demandPopin="true">
                     <customData>
-                        <core:CustomData key="p13nData" value='\{"columnKey": "Actions","columnIndex":"8"}'/>
+                        <core:CustomData key="p13nData" value='\{"autoColumnWidth": true, "columnKey": "Actions","columnIndex":"8"}'/>
                     </customData>
                     <Text text="{i18n>vatReturnList.Actions}"/>
                 </Column>
             </columns>
             <items>
-            
                 <ColumnListItem type="Navigation" press="onVatReturnPress">
                     <cells>
                         <Text text="{CountryName}"/>

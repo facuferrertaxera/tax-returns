@@ -17,7 +17,7 @@
         <f:header>
             <f:DynamicPageHeader pinnable="true">
                 <f:content>
-                    
+                    <core:Fragment fragmentName="tech.taxera.vatreturns.app.vatreturns.view.vatReturnDetail.VatReturnDetailHeader" type="XML"/>
                 </f:content>
             </f:DynamicPageHeader>
         </f:header>

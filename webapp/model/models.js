@@ -27,6 +27,13 @@ sap.ui.define([
                 return new JSONModel({
                     busyIndicatorDelay: 0,
                     currentView: "vatReturnList",
+                    vatReturnDetail: {
+                        headerExpanded: true,
+                        selectedDocType: "O"
+                    },
+                    vatReturnSummary: {
+                        headerExpanded: true,
+                    },
                     vatReturnList: {
                         statusFilters: [],
                         searchValue: "",

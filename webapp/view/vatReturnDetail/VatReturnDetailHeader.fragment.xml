@@ -5,29 +5,7 @@
     xmlns:card="sap.f.cards"
     xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core" displayBlock="true">
-    <!--
-    <f:Card class="sapUiSmallMargin" width="300px" visible="false">
-        <f:header>
-            <card:Header title="{CompanyCode}" subtitle="{parts:[{path: 'SubmissionDateFrom'}, {path: 'SubmissionDateTo'}], formatter: '.formatter.formatVisibleDurationText'}" iconSrc="{ path: 'Status', formatter: '.formatter.formatStatusIcon' }"/>
-        </f:header>
-        <f:content>
-            <VBox width="100%" height="110px" class="sapUiSmallMargin" justifyContent="SpaceAround">
-                <HBox justifyContent="SpaceBetween">
-                    <Label text="{i18n>vatSummaryHeader.TotalOutputTax}: "/>
-                    <Text text="{parts: ['TotalOutputTax', 'Currency'], type: 'sap.ui.model.type.Currency'}"/>
-                </HBox>
-                <HBox justifyContent="SpaceBetween">
-                    <Label text="{i18n>vatSummaryHeader.TotalInputTax}: "/>
-                    <Text text="{parts: ['TotalInputTax', 'Currency'], type: 'sap.ui.model.type.Currency'}"/>
-                </HBox>
-                <HBox justifyContent="SpaceBetween">
-                    <Label text="{i18n>vatSummaryHeader.TaxBalance}: "/>
-                    <Text text="{parts: ['TaxBalance', 'Currency'], type: 'sap.ui.model.type.Currency'}"/>
-                </HBox>
-            </VBox>
-        </f:content>
-    </f:Card>
-    -->
+    <VBox id="HeaderFlexBox">
     <form:Form editable="false">
         <form:layout>
             <form:ColumnLayout columnsM="1" columnsL="2" columnsXL="3" />
@@ -103,4 +81,11 @@
             </form:FormContainer>
         </form:formContainers>
     </form:Form>
+    <SegmentedButton id="segmentedBtn" selectedKey="{view>/vatReturnDetail/selectedDocType}" width="100%" selectionChange="onSelectedDocTypeChange">
+        <items>
+            <SegmentedButtonItem text="{i18n>vatDetailTable.OutputTax}" key="O"/>
+            <SegmentedButtonItem text="{i18n>vatDetailTable.InputTax}" key="I"/>
+        </items>
+    </SegmentedButton>
+    </VBox>
 </core:FragmentDefinition>
