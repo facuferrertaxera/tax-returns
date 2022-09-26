@@ -11,9 +11,10 @@
             <OverflowToolbar design="Transparent">
                 <ToolbarSpacer/>
                 <Button text="{i18n>vatReturnList.NewVatReturn}" type="Emphasized" press="onNewVATReturn" enabled="true"/>
+                <Button text="{i18n>vatReturnList.Submit}" type="Ghost" press="onSubmit" enabled="{= ${view>/vatReturnList/SelectedItems}.length > 0}"/>
             </OverflowToolbar>
         </st:customToolbar>
-        <Table id="vatReturnsTable" sticky="ColumnHeaders,HeaderToolbar" fixedLayout="Strict" contextualWidth="Auto" mode="None" selectionChange="onSelectExtraction" growing="true" growingScrollToLoad="true" growingThreshold="100">
+        <Table id="vatReturnsTable" sticky="ColumnHeaders,HeaderToolbar" fixedLayout="Strict" contextualWidth="Auto" mode="MultiSelect" selectionChange="onSelectedVatChange" growing="true" growingScrollToLoad="true" growingThreshold="100">
             <columns>
                 <Column demandPopin="true">
                     <customData>

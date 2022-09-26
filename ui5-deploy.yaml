@@ -18,6 +18,6 @@ builder:
           url: https://7ec63dd8-7f4b-4098-9f2b-2383f094b0b0.abap.eu10.hana.ondemand.com
           scp: true
         app:
-          name: /TAXERA/taxreturns
-          package: /TAXERA/taxreturns_UI
-          transport: DEVK900347
+          name: /TAXERA/VAT
+          package: /TAXERA/VAT_UI
+          transport: DEVK900394

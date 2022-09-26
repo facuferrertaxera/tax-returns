@@ -2,7 +2,6 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:f="sap.f"
-    
     xmlns:core="sap.ui.core">
 
     <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" headerExpanded="{view>/vatReturnDetail/headerExpanded}" busyIndicatorDelay="{view>/busyIndicatorDelay}">
@@ -22,7 +21,10 @@
             </f:DynamicPageHeader>
         </f:header>
         <f:content>
-            <core:Fragment fragmentName="tech.taxera.vatreturns.app.vatreturns.view.vatReturnDetail.VatReturnDetailTable" type="XML"/>
+            <VBox>
+                <core:Fragment fragmentName="tech.taxera.vatreturns.app.vatreturns.view.vatReturnDetail.VatReturnDetailOutputTable" type="XML"/>
+                <core:Fragment fragmentName="tech.taxera.vatreturns.app.vatreturns.view.vatReturnDetail.VatReturnDetailInputTable" type="XML"/>
+            </VBox>
         </f:content>
     </f:DynamicPage>
 </mvc:View>

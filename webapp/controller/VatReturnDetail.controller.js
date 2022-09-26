@@ -43,7 +43,7 @@ sap.ui.define([
 
             },
             _bindView: function (sVatId) {
-                this.getView().byId("vatReturnDetailSTable").setModel(this.getView().getModel());
+                this.getView().byId("vatReturnDetailInputSTable").setModel(this.getView().getModel());
                 if (sVatId) {
                     this.getView().bindElement({
                         path: `/VatHeader('${sVatId}')`,
@@ -54,7 +54,23 @@ sap.ui.define([
                             dataRequested: () => this.getView().setBusy(true),
                             dataReceived: () => {
                                 this.getView().setBusy(false);
-                                this.getView().byId("vatReturnDetailSTable").rebindTable(true);
+                                this.getView().byId("vatReturnDetailInputSTable").rebindTable(true);
+                            }
+                        }
+                    });
+                }
+                this.getView().byId("vatReturnDetailOutputSTable").setModel(this.getView().getModel());
+                if (sVatId) {
+                    this.getView().bindElement({
+                        path: `/VatHeader('${sVatId}')`,
+                        parameters: {
+                            expand: "to_VatDocument"
+                        },
+                        events: {
+                            dataRequested: () => this.getView().setBusy(true),
+                            dataReceived: () => {
+                                this.getView().setBusy(false);
+                                this.getView().byId("vatReturnDetailOutputSTable").rebindTable(true);
                             }
                         }
                     });
@@ -105,12 +121,14 @@ sap.ui.define([
                             properties: oTotal
                         });
 
-                        this.getView().byId("vatReturnDetailTable").setBindingContext(oContext, "totals");
+                        this.getView().byId("vatReturnDetailOutputSTable").setBindingContext(oContext, "totals");
+                        this.getView().byId("vatReturnDetailInputSTable").setBindingContext(oContext, "totals");
                     });
             },
 
             onSelectedDocTypeChange: function () {
-                this.getView().byId("vatReturnDetailSTable").rebindTable(true);
+                this.getView().byId("vatReturnDetailInputSTable").rebindTable(true);
+                this.getView().byId("vatReturnDetailOutputSTable").rebindTable(true);
                 this._bindBodyTotals(this.VatId);
             },
 

@@ -17,6 +17,8 @@ sap.ui.define([
                     return ValueState.Success;
                 case "E":
                     return ValueState.Error;
+                case "N":
+                    return ValueState.None;
                 default:
                     return ValueState.None;
             }
@@ -33,6 +35,8 @@ sap.ui.define([
                     return ValueState.Success;
                 case "E":
                     return ValueState.Error;
+                case "N":
+                    return ValueState.None;
                 default:
                     return ValueState.None;
             }
@@ -47,8 +51,10 @@ sap.ui.define([
             switch (sStatus) {
                 case "S":
                     return "sap-icon://sys-enter-2";
-                 case "E":
+                case "E":
                     return "sap-icon://sys-cancel-2";
+                case "N":
+                    return "sap-icon://write-new-document";
                 default:
                     return "";
 
@@ -197,15 +203,15 @@ sap.ui.define([
 
         },
 
-        formatVisibleDurationText: function(oStartDate, oEndDate) {
-			var dateType, startDate, endDate;
-			if (oStartDate && oEndDate) {
-				dateType = new this.types.TaxeraDateType();
-				startDate = dateType.formatValue(oStartDate, "string")
-				endDate = dateType.formatValue(oEndDate, "string")
-				return startDate + "\u00A0" + "to" + "\u00A0" + endDate;
-			}
-		}
+        formatVisibleDurationText: function (oStartDate, oEndDate) {
+            var dateType, startDate, endDate;
+            if (oStartDate && oEndDate) {
+                dateType = new this.types.TaxeraDateType();
+                startDate = dateType.formatValue(oStartDate, "string")
+                endDate = dateType.formatValue(oEndDate, "string")
+                return startDate + "\u00A0" + "to" + "\u00A0" + endDate;
+            }
+        }
 
     };
 });
