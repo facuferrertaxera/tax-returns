@@ -12,7 +12,7 @@
                     </sfb:ControlConfiguration>
                     <sfb:ControlConfiguration key="fiscal_year" mandatory="mandatory" visibleInAdvancedArea="true">
                     </sfb:ControlConfiguration>
-                    <sfb:ControlConfiguration key="vatReturn_date" mandatory="mandatory" label="{i18n>vatReturnList.CreatedOn}" conditionType="{
+                    <sfb:ControlConfiguration key="submission_date" mandatory="mandatory" label="{i18n>vatReturnList.CreatedOn}" conditionType="{
 						module: 'sap.ui.comp.config.condition.DateRangeType',
 						ignoreTime: true
 					}" visibleInAdvancedArea="true">
@@ -34,7 +34,7 @@
                     <FlexItemData shrinkFactor="0"/>
                 </sfb:layoutData>
             </sfb:SmartFilterBar>
-            <st:SmartTable visible="false" id="NewVatSTable" enableAutoBinding="false" smartVariant="__SVM01" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmtbm" entitySet="NewVatParameter" smartFilterId="NewVatsmartFilterBar" tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" showRowCount="true" requestAtLeastFields="companycode,fiscal_year,vatReturn_date,documentno,reference,tax_base_amount,country,tax_code">
+            <st:SmartTable visible="false" id="NewVatSTable" enableAutoBinding="false" smartVariant="__SVM01" persistencyKey="tech.taxera.vatreturns.app.vatreturns.elsmtbm" entitySet="NewVatParameter" smartFilterId="NewVatsmartFilterBar" tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" showRowCount="true" requestAtLeastFields="companycode,fiscal_year,submission_date,documentno,reference,tax_base_amount,country,tax_code">
                 <st:layoutData>
                     <FlexItemData growFactor="1" baseSize="0%"/>
                 </st:layoutData>

@@ -82,8 +82,10 @@
                         <Text text="{path: 'PostingDate', type: '.types.TaxeraDateType'}"/>
                         <Text text="{path: 'TaxReturnDate', type: '.types.TaxeraDateType'}"/>
                         <ObjectStatus inverted="false" text="{StatusText}" icon="{path: 'Status', formatter: '.formatter.formatStatusIcon' }" state="{path: 'Status', formatter: '.formatter.formatStatusColor' }"/>
-                        <HBox visible="false">
-                            <Button class="sapUiTinyMarginEnd" enabled="false" type="Emphasized" icon="sap-icon://download" tooltip="{i18n>vatReturnList.DownloadForm}" press="onDownloadForm"/>
+                        <HBox>
+                            <Button visible="{= ${Country} === 'GB'}" icon="sap-icon://lead" press="onHMRCInitialPress" text="{i18n>vatReturnList.actions.ViewHMRC}"/>
+                            <Button visible="{= ${Country} === 'GB'}" icon="sap-icon://lead" press="onLiabilitiesInitialPress" text="{i18n>vatReturnList.actions.Liabilities}" />
+                            <Button visible="{= ${Country} === 'GB'}" icon="sap-icon://simple-payment" press="onPaymentsInitialPress" text="{i18n>vatReturnList.actions.Liabilities}"/>
                         </HBox>
                     </cells>
                 </ColumnListItem>

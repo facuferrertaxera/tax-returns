@@ -177,21 +177,31 @@ sap.ui.define([
 			}.bind(this));
 		},
 
-		callFunction: function(sFunctionName, mParameters) {
-			mParameters = mParameters || {};
-			return new Promise(function(resolve, reject) {
+		callFunction: function (sFunctionName, mParameters) {
+            mParameters = mParameters || {};
+            return new Promise(function (resolve, reject) {
 
-				mParameters.success = function(response) {
-					resolve(response);
-				};
+                mParameters.success = function (response, o) {
+                    if (o.headers.hasOwnProperty("sap-message")) {
+                        var oSAPMessage = JSON.parse(o.headers["sap-message"]);
+                        if (oSAPMessage.severity === "error") {
+                            reject(oSAPMessage);
+                        } else {
+                            resolve(response);
+                        }
+                    } else {
+                        resolve(response);
+                    }
 
-				mParameters.error = function(response) {
-					reject(response);
-				};
+                };
 
-				ODataModel.prototype.callFunction.apply(this, [sFunctionName, mParameters]);
-			}.bind(this));
-		},
+                mParameters.error = function (response, o) {
+                    reject(response);
+                };
+
+                ODataModel.prototype.callFunction.apply(this, [sFunctionName, mParameters]);
+            }.bind(this));
+        },
 
 		resetChanges: function(sPath) {
 			//This extention of the OData model also deletes the Created Contexts when resetting the changes

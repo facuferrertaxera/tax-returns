@@ -46,19 +46,30 @@ sap.ui.define([
 
         onCreateNewVAT: function () {
             var oRootControl = this.getOwnerComponent().getRootControl(),
-                oSmartFilter = oRootControl.byId("NewVatsmartFilterBar");
+                oSmartFilterBar = oRootControl.byId("NewVatsmartFilterBar");
 
-            if(oSmartFilter.validateMandatoryFields()){
-                oSmartFilter.search();
+            if (oSmartFilterBar.validateMandatoryFields()) {
+                var aFilters = oSmartFilterBar.getFilters();
                 this.oVatReturnDialog.setBusy(true);
-                this.later(5000).then(()=>{
-                    this.oVatReturnDialog.setBusy(false);
-                    oSmartFilter.fireClear();
-                    this.oVatReturnDialog.close();
-                });
+                this.getView().getModel().promRead(`/NewVatParameter`,
+                    {
+                        filters: aFilters
+                    })
+                    .then((oResponse) => {
+                        this.oVatReturnDialog.setBusy(false);
+                        this.getModel().resetChanges();
+                        this._refreshTable();
+                        oSmartFilterBar.fireClear();
+                        this.oVatReturnDialog.close();
+                    }).finally(() => {
+                        this.oVatReturnDialog.setBusy(false);
+                    }).catch((oError) => {
+                        this.showErrorMessage(oError);
+                        this.oVatReturnDialog.setBusy(false);
+                    });
             }
 
-            
+
         }
 
     };

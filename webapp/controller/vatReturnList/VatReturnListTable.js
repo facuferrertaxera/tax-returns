@@ -26,6 +26,7 @@ sap.ui.define(["tech/taxera/vatreturns/app/vatreturns/controller/newVatReturn/Ne
 
             Promise.all(aPromises).then((aResponses) => {
                 this.getModel().resetChanges();
+                this._refreshTable();
             }).finally(() => {
                 this.getView().setBusy(false);
             }).catch((oError) => {
