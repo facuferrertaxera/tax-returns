@@ -150,12 +150,13 @@ sap.ui.define([
             }
         },
 
-		onMessageDialogClose: function() {
-			this._oMessageDialog.close();
-		},
+        onMessageDialogClose: function () {
+            this._oMessageDialog.close();
+        },
 
         showErrorMessage: function (oError) {
             var sMessage = this._getErrorMessage(oError),
+                sMessage = sMessage.replace(/&/g, "-"),
                 sTitle = this.i18n("Error"),
                 aDetails = this._getErrorMessageDetails(oError) || [];
 
