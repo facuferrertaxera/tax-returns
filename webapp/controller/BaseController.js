@@ -156,7 +156,7 @@ sap.ui.define([
 
         showErrorMessage: function (oError) {
             var sMessage = this._getErrorMessage(oError),
-                sMessage = sMessage.replace(/&/g, "-"),
+                sMessage = sMessage.replace(/&/g, ""),
                 sTitle = this.i18n("Error"),
                 aDetails = this._getErrorMessageDetails(oError) || [];
 
