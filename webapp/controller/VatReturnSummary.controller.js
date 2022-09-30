@@ -44,30 +44,14 @@ sap.ui.define([
             _bindView: function (sVatId) {
                 if (sVatId) {
                     this.getView().bindElement({
-                        path: `/VatTaxSummary`,
+                        path: `/VatHeader('${sVatId}')`,
+                        parameters: {
+                            expand: "to_VatTaxSummary"
+                        },
                         events: {
                             dataRequested: () => this.getView().setBusy(true),
                             dataReceived: () => this.getView().setBusy(false)
                         }
-                    });
-
-                    this.getView().getModel().promRead(`/VatTaxSummary`,
-                    {
-                        filters: [new Filter({
-                            path: "VatId",
-                            operator: FilterOperator.EQ,
-                            value1: sVatId
-                        })]
-                    })
-                    .then((oResponse) => {
-                        var oTotal = oResponse.results.pop();
-                        var sPath = this.getModel().getEntityObjectPath(oTotal);
-                        var oContext = this.getView().getModel().createEntry(sPath, {
-                            properties: oTotal
-                        });
-
-                        this.getView().setBindingContext(oContext);
-
                     });
                 }
             },

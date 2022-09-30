@@ -159,7 +159,13 @@ sap.ui.define([
                 sMessage = sMessage.replace(/&/g, ""),
                 sTitle = this.i18n("Error"),
                 aDetails = this._getErrorMessageDetails(oError) || [];
-
+            aDetails = aDetails.map((oDetail) => {
+                return {
+                    type: oDetail.type,
+                    message: oDetail.message.replace(/&/g, ""),
+                    description: oDetail.description
+                }
+            });
             if (aDetails.length > 0) {
                 this._oPresentMessageModel.setData(aDetails);
                 this._openMessageDialog();
@@ -184,6 +190,7 @@ sap.ui.define([
         },
 
         _getErrorMessageDetails: function (oError) {
+            var sMessage = "";
             if (oError.hasOwnProperty("responseText")) {
                 var oErrorDetail = JSON.parse(oError.responseText);
                 if (oErrorDetail.hasOwnProperty("error")) {
